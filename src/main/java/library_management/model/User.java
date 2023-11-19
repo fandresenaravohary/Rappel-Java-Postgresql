@@ -1,4 +1,4 @@
-package model;
+package library_management.model;
 
 import lombok.*;
 

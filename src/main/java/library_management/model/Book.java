@@ -1,4 +1,4 @@
-package model;
+package library_management.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ public class Book {
     private String bookName;
     private int pageNumbers;
     private char sex;
-    private Topic topic;
+    private library_management.Connection.model.Topic topic;
     private LocalDate releaseDate;
     private Long authorId;
 }
