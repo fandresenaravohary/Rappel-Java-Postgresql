@@ -13,7 +13,7 @@ import java.sql.Connection;
 
 
 public class BookCrudOperations implements CrudOperations<Book>{
-    private Connection connection;
+    private final Connection connection;
     public BookCrudOperations(Connection connection) {
         this.connection = connection;
     }
