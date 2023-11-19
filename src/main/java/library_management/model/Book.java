@@ -16,7 +16,4 @@ public class Book {
     private library_management.Connection.model.Topic topic;
     private LocalDate releaseDate;
     private Long authorId;
-
-    public Book(String s, int i, char m, library_management.Connection.model.Topic topic, LocalDate now, long l) {
-    }
 }

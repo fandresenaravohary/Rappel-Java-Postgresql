@@ -11,10 +11,6 @@ public class Author {
     private Long id;
     private String authorName;
     private char sex;
-
-    public Author(String johnDoe, char m) {
-
-    }
 }
 
 
