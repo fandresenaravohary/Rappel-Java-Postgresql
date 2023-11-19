@@ -5,11 +5,24 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(
-                System.getenv("DB_URL"),
-                System.getenv("DB_USER"),
-                System.getenv("DB_PASSWORD")
-        );
+    private static Connection connection;
+
+    private DatabaseConnection(){
+        try {
+            this.connection = DriverManager.getConnection(
+                    System.getenv("DB_URL"),
+                    System.getenv("DB_USER"),
+                    System.getenv("DB_PASSWORD")
+            );
+        } catch (SQLException e) {
+            System.out.println("Error while connecting to the database: "+ e.getMessage());
+        }
+    }
+
+    public static Connection getConnection() {
+        if(connection == null){
+            new DatabaseConnection();
+        }
+        return connection;
     }
 }
