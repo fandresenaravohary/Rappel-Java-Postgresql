@@ -10,6 +10,12 @@ import java.util.List;
 import static library_management.Connection.DatabaseConnection.connection;
 
 public class SubscriberCrudOperations implements CrudOperations<Subscriber>{
+    private final Connection connection;
+
+    public SubscriberCrudOperations(Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
     public List<Subscriber> findAll() {
         List<Subscriber> subscribers = new ArrayList<>();
