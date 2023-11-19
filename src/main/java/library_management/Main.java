@@ -5,9 +5,12 @@ import library_management.Repository.AuthorCrudOperations;
 import library_management.Repository.BookCrudOperations;
 import library_management.Repository.SubscriberCrudOperations;
 import library_management.model.Author;
+import library_management.model.Book;
+import library_management.model.Subscriber;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -37,6 +40,25 @@ public class Main {
     }
 
     private static void testSubscriberCrudOperations(SubscriberCrudOperations subscriberCrud) {
+        List<Subscriber> allSubscribers = subscriberCrud.findAll();
+        System.out.println("All Subscribers: " + allSubscribers);
+
+        List<Subscriber> subscribersToSave = new ArrayList<>();
+        subscribersToSave.add(new Subscriber("Alice", "ref-001"));
+        subscribersToSave.add(new Subscriber("Bob", "ref-002"));
+
+        List<Subscriber> savedSubscribers = subscriberCrud.saveAll(subscribersToSave);
+        System.out.println("Saved Subscribers: " + savedSubscribers);
+
+        List<Subscriber> updatedSubscribers = subscriberCrud.findAll();
+        System.out.println("Updated Subscribers: " + updatedSubscribers);
+
+        Subscriber subscriberToDelete = updatedSubscribers.get(0);
+        Subscriber deletedSubscriber = subscriberCrud.delete(subscriberToDelete);
+        System.out.println("Deleted Subscriber: " + deletedSubscriber);
+
+        List<Subscriber> remainingSubscribers = subscriberCrud.findAll();
+        System.out.println("Remaining Subscribers: " + remainingSubscribers);
     }
 
     private static void testAuthorCrudOperations(AuthorCrudOperations authorCrud) {
@@ -66,7 +88,27 @@ public class Main {
     }
 
     private static void testBookCrudOperations(BookCrudOperations bookCrud) {
+        List<Book> allBooks = bookCrud.findAll();
+        System.out.println("All Books: " + allBooks);
+
+        List<Book> booksToSave = new ArrayList<>();
+        booksToSave.add(new Book("Book 1", 200, 'M', library_management.Connection.model.Topic.COMEDY, LocalDate.now(), 1L));
+        booksToSave.add(new Book("Book 2", 150, 'F', library_management.Connection.model.Topic.ROMANCE, LocalDate.now(), 2L));
+
+        List<Book> savedBooks = bookCrud.saveAll(booksToSave);
+        System.out.println("Saved Books: " + savedBooks);
+
+        List<Book> updatedBooks = bookCrud.findAll();
+        System.out.println("Updated Books: " + updatedBooks);
+
+        Book bookToDelete = updatedBooks.get(0);
+        Book deletedBook = bookCrud.delete(bookToDelete);
+        System.out.println("Deleted Book: " + deletedBook);
+
+        List<Book> remainingBooks = bookCrud.findAll();
+        System.out.println("Remaining Books: " + remainingBooks);
     }
+
 
 
 }

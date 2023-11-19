@@ -11,4 +11,7 @@ public class Subscriber{
     private Long id;
     private String name;
     private String reference;
+
+    public Subscriber(String alice, String s) {
+    }
 }
